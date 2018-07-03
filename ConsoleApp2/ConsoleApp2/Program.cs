@@ -10,9 +10,7 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Vadim3");
-            Console.WriteLine("Hello Vadim4");
-
+            
         }
     }
 }
