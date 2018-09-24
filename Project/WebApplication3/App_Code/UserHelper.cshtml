@@ -1,0 +1,22 @@
+﻿@helper DisplayBirthdate(DateTime? date)
+{
+    if (date == null)
+    {
+        <span>Free</span>
+    }
+    else
+    {
+        <span>@($"{date:C2}")</span>
+    }
+}
+@helper DisplayAge(int? age)
+{
+    if (age == null)
+    {
+        <span>Free</span>
+    }
+    else
+    {
+        <span>@($"{age}")</span>
+    }
+}
