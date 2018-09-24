@@ -1,0 +1,70 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<CodeFirst.User>
+<table class="table" id="as">
+    <tr>
+        <th>
+            @Html.ActionLink("Username", "Index")
+        </th>
+        <th>
+            @Html.ActionLink("Email", "Index")
+        </th>
+        <th>
+            Option
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+
+            <td><a id="dt" class="details" href="javascript:;">View</a></td>
+
+        </tr>
+    }
+</table>
+<div id="dialog" style="display:grid">
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
+      rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        $("#dialog").dialog({
+            autoOpen: true,
+            modal: false,
+            title: "View Details"
+        });
+        $(".details").click(function () { 
+            $.ajax({
+                type: "GET",
+               
+                url: "/UserProfile/DetailsUser",
+                data: '{customerId: "' + id + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $('#dialog').html(response);
+                    $('#dialog').dialog('open');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

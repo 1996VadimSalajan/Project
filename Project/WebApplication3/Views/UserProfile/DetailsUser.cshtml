@@ -1,0 +1,15 @@
+﻿@model CodeFirst.User
+
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td valign="top"><b>@Html.DisplayNameFor(model => model.UserName):</b></td>
+            <td>
+                @Html.DisplayFor(model => model.UserName)
+                <br />
+                @Html.DisplayFor(model => model.Email) 
+                <br />
+            </td>
+        </tr>
+    </table>
+
+
